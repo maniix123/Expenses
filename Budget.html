@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.css">
+	<link rel = "stylesheet" href = "css/try.css">
+    <link rel="stylesheet" href="themes/Maniix.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<script src="jquery/jquery.js"></script>
+	<script src = "jquery/jquery.min.js"></script>
+	<script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+	<script src = "js/Handler.js"></script>
+  	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() 
+	{
+	//i-register ang tanan event listener
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	}
+    function onBackKeyDown(e) {
+		e.preventDefault();
+		var r = confirm("Are you sure to exit?");
+		if (r == true)
+		{
+			var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+			db.transaction(function (tx){
+			tx.executeSql('DELETE FROM User;');			
+			},firsterror);
+			
+			navigator.app.exitApp();
+		} 
+		else 
+		{
+			
+		}
+    }
+	function firsterror(err) {
+        alert('There is an error in the first function: ' +err.message+ '\nSecond message'+err);
+    }
+	</script>
+</head>
+<body>
+
+<div data-role="page" id = "budget">
+	<!-- PANEL DRE BESS --->
+	<div data-role="panel" id="myPanel" data-dismissible="true" data-swipe-close = "true" data-position-fixed="true" data-display="overlay"> 
+	<h3>Menu</h3>
+	<ul data-role = "listview" data-inset = "true">
+		<li><a href = "homepage.html" rel = "external">Home</a></li>
+		<li><a href = "reports.html" rel = "external">View Reports</a></li>
+		<li><a href = "Budget.html" rel = "external">View Budget</a></li>
+		<li><a href = "categories.html" rel = "external">View Categories</a></li>
+		<li><a href = "piechart.html" rel = "external">View Pie Chart</a></li>
+		<li><a href = "">About Us</a></li>
+		<li><a href="#budget" data-rel="close"data-role="button" data-icon="delete" data-iconpos = "right">Close Panel</a></li>
+	</ul>
+
+	</div> <!-- END OF PANEL BESS -->
+	<div data-role="header" data-fullscreen="true">
+	<h1>Monthly Expenses<br>Monitoring</h1>
+	</div>
+	<div data-role="main" class="ui-content mycontent">
+		<center><h3>Budget Report</h3></center>
+		<ul data-role = "listview" data-inset = "true" id = "displaybudget">
+		</ul>
+	</div>
+	<script>
+	var monthNames = ["January", "February", "March", "April", "May", "June",
+					  "July", "August", "September", "October", "November", "December"];
+	var d = new Date();
+	var current_month = monthNames[d.getMonth()];
+	document.getElementById('todaymonth').innerHTML = current_month;
+	</script>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+       <div data-role="navbar">
+            <ul>
+                <li><a href="#myPanel" data-icon="grid" data-role="button" data-corners="false">Menu</a></li>
+                <li><a href="reports.html" data-icon="info" data-role="button" data-corners="false" rel = "external">Reports</a></li>
+                <li><a href="#" data-icon="check" data-role="button" data-corners="false" onclick = "logout()">Logout</a></li>
+            </ul>
+        </div>
+  </div>
+</div>
+	<script>
+    function logout() {
+		var r = confirm("Are you sure to logout?");
+		if (r == true)
+		{
+			var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+			db.transaction(function (tx){
+			tx.executeSql('DELETE FROM User;');			
+			},logouterror);
+			
+			location.href = "index.html";
+		} 
+		else 
+		{
+			
+		}
+    }
+	function logouterror(err) {
+        alert('There is an error in the first function: ' +err.message+ '\nSecond message'+err);
+    }		
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name = "viewport" content="width=device-width, initial-scale=1">
+	<link rel = "stylesheet" href="jquery/jquery.mobile-1.4.5.css">
+	<link rel = "stylesheet" href = "css/try.css">
+    <link rel = "stylesheet" href="themes/Maniix.css" />
+    <link rel = "stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<script src = "jquery/jquery.js"></script>
+	<script src = "jquery/jquery.min.js"></script>
+	<script src = "jquery/jquery.mobile-1.4.5.min.js"></script>	
+	<script src = "js/Chart.js"></script>
+
+</head>
+<body onload = "openDB();">
+
+<div data-role="page" id = "piechart">
+	<!-- PANEL DRE BESS --->
+	<div data-role="panel" id="myPanel" data-dismissible="true" data-swipe-close = "true"> 
+	<h3>Menu</h3>
+	<ul data-role = "listview" data-inset = "true">
+		<li><a href = "homepage.html" rel = "external">Home</a></li>
+		<li><a href = "reports.html" rel = "external">Reports</a></li>
+		<li><a href = "Budget.html" rel = "external">Budget</a></li>
+		<li><a href = "categories.html" rel = "external">Categories</a></li>
+		<li><a href = "piechart.html" rel = "external">Pie Chart</a></li>
+		<li><a href = "">About Us</a></li>
+		<li><a href="#piechart" data-rel="close" data-role="button" data-icon="delete" data-iconpos = "right">Close Panel</a></li>
+	</ul>
+	</div> <!-- END OF PANEL BESS -->
+	<div data-role="header" data-fullscreen="true">
+	<h1>Monthly Expenses<br>Monitoring</h1>
+	</div>
+	<div data-role="main" class="ui-content mycontent">
+		<center>
+		<h4>Pie chart for the month of <span id = "todaymonth"></span></h4>
+		</center>
+	<script>
+	var monthNames = ["January", "February", "March", "April", "May", "June",
+					  "July", "August", "September", "October", "November", "December"];
+	var d = new Date();
+	var current_month = monthNames[d.getMonth()];
+	document.getElementById('todaymonth').innerHTML = current_month;
+	</script>
+	<canvas id="myChart" style = "margin: 0 auto;"></canvas>
+	<h4>Legend</h4>
+	<table id = "table">
+	
+	</table>
+	</div>
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+       <div data-role="navbar">
+            <ul>
+                <li><a href="#myPanel" data-icon="grid" data-role="button" data-corners="false">Menu</a></li>
+                <li><a href="reports.html" data-icon="info" data-role="button" data-corners="false" rel = "external">Reports</a></li>
+                <li><a href="#" data-icon="check" data-role="button" data-corners="false" onclick = "logout()">Logout</a></li>
+            </ul>
+        </div>
+  </div>
+</div>
+   <script src = "js/Handler.js"></script>
+	<script>
+    function logout() {
+		var r = confirm("Are you sure to logout?");
+		if (r == true)
+		{
+			var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+			db.transaction(function (tx){
+			tx.executeSql('DELETE FROM User;');			
+			},logouterror);
+			
+			location.href = "index.html";
+		} 
+		else 
+		{
+			
+		}
+    }
+	function logouterror(err) {
+        alert('There is an error in the first function: ' +err.message+ '\nSecond message'+err);
+    }		
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.css">
+	<script src="jquery/jquery.js"></script>
+	<link rel = "stylesheet" href = "try.css">
+    <link rel="stylesheet" href="themes/Maniix.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() 
+	{
+	//i-register ang tanan event listener
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	}
+    function onBackKeyDown(e) {
+		e.preventDefault();
+		var r = confirm("Are you sure to exit?");
+		if (r == true)
+		{
+			navigator.app.exitApp();
+		} 
+		else 
+		{
+			
+		}
+    }
+	</script>
+</head>
+<body>
+
+<div data-role="page" id="register">
+  <div data-role="header">
+	<h1>Monthly Expenses<br>Monitoring</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+	<h3>Register Account</h3>
+    <input type="text" id="first" placeholder="Username">
+    <input type="Password" id="second" placeholder="Password">
+	<button id = "login" class = "ui-btn ui-icon-arrow-r ui-btn-icon-left ui-shadow" onclick = "Register()">Register</button>
+  </div>
+
+  <div data-role="footer"  data-position="fixed" data-tap-toggle="false">
+    <h1>&copy; Baruang,<br>Macabato, Daison | 2015</h1>
+  </div>
+</div> 
+  <script src = "js/Handler.js"></script>
+</body>
+</html>
