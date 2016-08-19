@@ -1,3 +1,16 @@
-#Monthly Expenses Monitoring Android Application
+# Hello everyone. This is one of the many Phonegap apps that I've made. 
 
-####Hello everyone this is my first ever Android Application.
+### It's a monthly expenses monitoring app where the user can input and record there expenses.
+
+#### Some of the app's features include
+1. User registration.
+2. Dynamic budget change.
+3. Pie chart display for all expenses.
+4. Monthly expenses report.
+
+
+##### You can contact me through the following:
+. Email: maniix123@gmail.com
+. Facebook: [](www.facebook.com/mohammad.manarondong)
+. Skype: mohammad.manarondong1
+ 
