@@ -11,6 +11,6 @@
 
 ##### You can contact me through the following:
 ###Email: maniix123@gmail.com
-###Facebook: [Mohammad Manarondong](www.facebook.com/mohammad.manarondong)
+###Facebook: [Mohammad Manarondong](https://facebook.com/mohammad.manarondong)
 ###Skype: mohammad.manarondong1
  
